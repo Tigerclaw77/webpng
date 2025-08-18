@@ -1,505 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <title>webpng — PNG ↔ WebP Converter (Free, Private)</title>
-      <meta
-        name="description"
-        content="Convert PNG ↔ WebP in your browser. Free, fast, and private — images never leave your device."
-      />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>webpng — PNG ↔ WebP Converter (Free, Private)</title>
+    <meta
+      name="description"
+      content="Convert PNG ↔ WebP in your browser. Free, fast, and private — images never leave your device."
+    />
 
-      <!-- ✅ AdSense -->
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5351497863299627"
-        crossorigin="anonymous"
-      ></script>
-      <meta name="google-adsense-account" content="ca-pub-5351497863299627" />
+    <!-- ✅ AdSense -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5351497863299627"
+      crossorigin="anonymous"
+    ></script>
+    <meta name="google-adsense-account" content="ca-pub-5351497863299627" />
 
-      <style>
-        :root {
-          --bg: #0f1115;
-          --panel: #12151b;
-          --muted: #7a8699;
-          --text: #e9eef5;
-          --accent: #ff4f9a;
-          --border: #1f2430;
-        }
-        * {
-          box-sizing: border-box;
-        }
-        body {
-          margin: 0;
-          font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-            Arial;
-          background: radial-gradient(
-              1200px 800px at 20% -10%,
-              #1a2030 0,
-              transparent 60%
-            ),
-            var(--bg);
-          color: var(--text);
-        }
-        a {
-          color: #aad2ff;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
-        .wrap {
-          max-width: 1100px;
-          margin: 32px auto;
-          padding: 0 16px;
-        }
-        header,
-        footer {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 10px 16px;
-        }
-        nav {
-          display: flex;
-          gap: 14px;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-        .brand {
-          font-weight: 800;
-          letter-spacing: 0.2px;
-        }
-        .pill {
-          padding: 6px 10px;
-          border: 1px solid var(--border);
-          border-radius: 999px;
-          background: #161a24;
-        }
-        .sub {
-          color: var(--muted);
-          text-align: center;
-          margin: 6px 0 18px;
-        }
+    <style>
+      :root {
+        --bg: #0f1115;
+        --panel: #12151b;
+        --muted: #7a8699;
+        --text: #e9eef5;
+        --accent: #ff4f9a;
+        --border: #1f2430;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Arial;
+        background: radial-gradient(
+            1200px 800px at 20% -10%,
+            #1a2030 0,
+            transparent 60%
+          ),
+          var(--bg);
+        color: var(--text);
+      }
+      a {
+        color: #aad2ff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 32px auto;
+        padding: 0 16px;
+      }
+      header,
+      footer {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 10px 16px;
+      }
+      nav {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+      .pill {
+        padding: 6px 10px;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: #161a24;
+      }
+      .sub {
+        color: var(--muted);
+        text-align: center;
+        margin: 6px 0 18px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      @media (min-width: 900px) {
         .grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 16px;
+          grid-template-columns: 1fr 1fr;
         }
-        @media (min-width: 900px) {
-          .grid {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-        .panel {
-          background: linear-gradient(180deg, #141925, #10131b);
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          padding: 16px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-        }
-        .panel h2 {
-          margin: 0 0 12px;
-          font-size: 16px;
-          letter-spacing: 0.2px;
-        }
-        .drop {
-          border: 1.5px dashed #2a2f3c;
-          border-radius: 16px;
-          padding: 18px;
-          text-align: center;
-          background: #0e1219;
-        }
-        .drop.is-drag {
-          outline: 2px solid var(--accent);
-          outline-offset: 2px;
-        }
-        .muted {
-          color: var(--muted);
-          font-size: 13px;
-        }
-        .row {
-          display: flex;
-          gap: 10px;
-          align-items: center;
-          flex-wrap: wrap;
-        }
-        .btn {
-          appearance: none;
-          border: 1px solid var(--border);
-          background: #171b24;
-          color: var(--text);
-          padding: 8px 12px;
-          border-radius: 10px;
-          cursor: pointer;
-          font-weight: 600;
-        }
-        .btn:hover {
-          background: #1a2030;
-        }
-        .btn.primary {
-          background: var(--accent);
-          border-color: #ff2f8a;
-          color: #fff;
-        }
-        .toggle {
-          display: inline-flex;
-          background: #141926;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          overflow: hidden;
-        }
-        .toggle button {
-          border: none;
-          background: transparent;
-          color: var(--text);
-          padding: 8px 12px;
-          cursor: pointer;
-        }
-        .toggle button.active {
-          background: var(--accent);
-          color: #fff;
-        }
-        .input {
-          width: 100%;
-          background: #121722;
-          border: 1px solid var(--border);
-          color: var(--text);
-          padding: 8px 10px;
-          border-radius: 10px;
-        }
-        .kv {
-          display: grid;
-          grid-template-columns: 1fr auto;
-          gap: 8px;
-          margin: 10px 0;
-          font-size: 13px;
-        }
-        .canvasWrap {
-          background: #0a0d14;
-          border: 1px solid var(--border);
-          border-radius: 12px;
-          overflow: auto;
-          min-height: 240px;
-          display: grid;
-          place-items: center;
-        }
-        canvas {
-          display: block;
-          max-width: 100%;
-          height: auto;
-        }
-        .note {
-          font-size: 12px;
-          color: var(--muted);
-          margin-top: 8px;
-        }
-        .err {
-          margin-top: 8px;
-          color: #e74c3c;
-          font-weight: 600;
-        }
-        .ads {
-          margin: 16px auto;
-          display: block;
-          text-align: center;
-        }
-      </style>
-    </head>
+      }
+      .panel {
+        background: linear-gradient(180deg, #141925, #10131b);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+      .drop {
+        border: 1.5px dashed #2a2f3c;
+        border-radius: 16px;
+        padding: 18px;
+        text-align: center;
+        background: #0e1219;
+      }
+      .drop.is-drag {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: #171b24;
+        color: var(--text);
+        padding: 8px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .btn:hover {
+        background: #1a2030;
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: #ff2f8a;
+        color: #fff;
+      }
+      .toggle {
+        display: inline-flex;
+        background: #141926;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .toggle button {
+        border: none;
+        background: transparent;
+        color: var(--text);
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+      .toggle button.active {
+        background: var(--accent);
+        color: #fff;
+      }
+      .input {
+        width: 100%;
+        background: #121722;
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 8px 10px;
+        border-radius: 10px;
+      }
+      .kv {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        margin: 10px 0;
+        font-size: 13px;
+      }
+      .canvasWrap {
+        background: #0a0d14;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: auto;
+        min-height: 240px;
+        display: grid;
+        place-items: center;
+      }
+      canvas {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      .note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 8px;
+      }
+      .err {
+        margin-top: 8px;
+        color: #e74c3c;
+        font-weight: 600;
+      }
+      .ads {
+        margin: 16px auto;
+        display: block;
+        text-align: center;
+      }
+    </style>
+  </head>
 
-    <body>
-      <header>
-        <nav>
-          <span class="brand">webpng</span>
-          <a class="pill" href="index.html">Home</a>
-          <a class="pill" href="about.html">About</a>
-          <a class="pill" href="privacy.html">Privacy</a>
-          <a class="pill" href="terms.html">Terms</a>
-          <a class="pill" href="contact.html">Contact</a>
-        </nav>
-      </header>
+  <body>
+    <header>
+      <nav>
+        <span class="brand">webpng</span>
+        <a class="pill" href="index.html">Home</a>
+        <a class="pill" href="about.html">About</a>
+        <a class="pill" href="privacy.html">Privacy</a>
+        <a class="pill" href="terms.html">Terms</a>
+        <a class="pill" href="contact.html">Contact</a>
+      </nav>
+    </header>
 
-      <div class="wrap">
-        <h1>webpng — ultra-simple PNG ↔ WebP</h1>
-        <div class="sub">
-          Free, private, in-browser conversion. Images never leave your device.
-        </div>
-
-        <!-- Ad unit: top -->
-        <ins
-          class="adsbygoogle ads"
-          style="display: block"
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-          data-ad-slot="1111111111"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <div class="panel drop" id="drop">
-          <div class="row" style="justify-content: center; gap: 12px">
-            <label class="btn" style="background: #121720">
-              Choose file
-              <input
-                id="fileInput"
-                type="file"
-                accept="image/*"
-                style="display: none"
-              />
-            </label>
-            <div class="muted">…or drop an image here</div>
-          </div>
-          <div id="fileInfo" class="muted" style="margin-top: 10px"></div>
-          <div id="error" class="err" role="alert" style="display: none"></div>
-        </div>
-
-        <div style="height: 8px"></div>
-
-        <div class="grid">
-          <div class="panel">
-            <h2>Preview</h2>
-            <div class="canvasWrap"><canvas id="canvas"></canvas></div>
-            <div class="kv">
-              <span>Dimensions</span><span id="dims">—</span>
-              <span>Original size</span><span id="origSize">—</span>
-              <span>Output size</span><span id="outSize">—</span>
-            </div>
-          </div>
-
-          <div class="panel">
-            <h2>Output</h2>
-            <div class="row" style="gap: 8px; margin-bottom: 10px">
-              <div class="toggle" role="tablist" aria-label="Output format">
-                <button
-                  id="fmtWebp"
-                  type="button"
-                  class="active"
-                  role="tab"
-                  aria-selected="true"
-                >
-                  WEBP
-                </button>
-                <button
-                  id="fmtPng"
-                  type="button"
-                  role="tab"
-                  aria-selected="false"
-                >
-                  PNG
-                </button>
-              </div>
-
-              <button id="convertBtn" class="btn primary" disabled>
-                Convert
-              </button>
-              <a id="downloadLink" class="btn" download style="display: none"
-                >Download</a
-              >
-            </div>
-
-            <label class="muted" for="outName">Output name</label>
-            <input id="outName" class="input" placeholder="image-name" />
-
-            <div id="qualityWrap" style="margin-top: 12px">
-              <div class="row" style="justify-content: space-between">
-                <label for="quality">Quality (WEBP)</label>
-                <span id="qualityLabel" class="muted">92%</span>
-              </div>
-              <input
-                id="quality"
-                class="input"
-                type="range"
-                min="0.1"
-                max="1"
-                step="0.01"
-                value="0.92"
-              />
-              <div class="note">(Higher quality = larger file)</div>
-            </div>
-
-            <div class="note">
-              All processing happens in your browser. Nothing is uploaded.
-            </div>
-          </div>
-        </div>
-
-        <!-- Ad unit: bottom -->
-        <ins
-          class="adsbygoogle ads"
-          style="display: block; margin-top: 16px"
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXX"
-          data-ad-slot="2222222222"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        ></ins>
-        <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <footer class="sub" style="margin-top: 18px">
-          © <span id="y"></span> webpng · <a href="privacy.html">Privacy</a> ·
-          <a href="terms.html">Terms</a>
-        </footer>
+    <div class="wrap">
+      <h1>webpng — ultra-simple PNG ↔ WebP</h1>
+      <div class="sub">
+        Free, private, in-browser conversion. Images never leave your device.
       </div>
 
+      <!-- Ad unit: top -->
+      <ins
+        class="adsbygoogle ads"
+        style="display: block"
+        data-ad-client="ca-pub-5351497863299627"
+        data-ad-slot="1111111111"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
       <script>
-        document.getElementById("y").textContent = new Date().getFullYear();
-        const fileInput = document.getElementById("fileInput");
-        const drop = document.getElementById("drop");
-        const fileInfo = document.getElementById("fileInfo");
-        const errEl = document.getElementById("error");
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
-        const fmtWebp = document.getElementById("fmtWebp");
-        const fmtPng = document.getElementById("fmtPng");
-        const convertBtn = document.getElementById("convertBtn");
-        const downloadLink = document.getElementById("downloadLink");
-        const outName = document.getElementById("outName");
-        const qualityWrap = document.getElementById("qualityWrap");
-        const quality = document.getElementById("quality");
-        const qualityLabel = document.getElementById("qualityLabel");
-        const dims = document.getElementById("dims");
-        const origSize = document.getElementById("origSize");
-        const outSize = document.getElementById("outSize");
-        let currentFile = null,
-          currentImgURL = "",
-          outputURL = "",
-          format = "webp";
-        const revoke = (url) => {
-          if (url) URL.revokeObjectURL(url);
-        };
-        const bytes = (n) => {
-          if (!Number.isFinite(n)) return "—";
-          const k = 1024;
-          if (n < k) return n + " B";
-          const u = ["KB", "MB", "GB"];
-          let i = -1;
-          do {
-            n /= k;
-            ++i;
-          } while (n >= k && i < u.length - 1);
-          return n.toFixed(1) + " " + u[i];
-        };
-        const setError = (msg) => {
-          errEl.style.display = msg ? "block" : "none";
-          errEl.textContent = msg || "";
-        };
-        function setFormat(next) {
-          format = next;
-          fmtWebp.classList.toggle("active", next === "webp");
-          fmtPng.classList.toggle("active", next === "png");
-          fmtWebp.setAttribute("aria-selected", next === "webp");
-          fmtPng.setAttribute("aria-selected", next === "png");
-          qualityWrap.style.display = next === "webp" ? "block" : "none";
-        }
-        function clearOutput() {
-          if (outputURL) {
-            revoke(outputURL);
-            outputURL = "";
-          }
-          downloadLink.style.display = "none";
-          downloadLink.removeAttribute("href");
-          outSize.textContent = "—";
-        }
-        function loadFile(f) {
-          setError("");
-          clearOutput();
-          currentFile = f;
-          fileInfo.textContent = f ? `Loaded: ${f.name}` : "";
-          origSize.textContent = f ? bytes(f.size) : "—";
-          if (!f) return;
-          outName.value = (f.name || "image").replace(/\.[^/.]+$/, "");
-          if (currentImgURL) {
-            revoke(currentImgURL);
-            currentImgURL = "";
-          }
-          const url = URL.createObjectURL(f);
-          currentImgURL = url;
-          const img = new Image();
-          img.onload = () => {
-            canvas.width = img.naturalWidth;
-            canvas.height = img.naturalHeight;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.drawImage(img, 0, 0);
-            dims.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
-            convertBtn.disabled = false;
-          };
-          img.onerror = () => setError("Failed to load that image.");
-          img.src = url;
-        }
-        function handleFiles(list) {
-          const f = list && list[0];
-          if (!f) return;
-          const ext = (f.name.split(".").pop() || "").toLowerCase();
-          if (!["png", "jpg", "jpeg", "webp", "gif"].includes(ext)) {
-            setError("Unsupported type. Try PNG/JPG/WEBP/GIF.");
-            return;
-          }
-          loadFile(f);
-        }
-        ["dragenter", "dragover"].forEach((t) =>
-          drop.addEventListener(t, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            drop.classList.add("is-drag");
-          })
-        );
-        ["dragleave", "drop"].forEach((t) =>
-          drop.addEventListener(t, (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            drop.classList.remove("is-drag");
-          })
-        );
-        drop.addEventListener("drop", (e) => handleFiles(e.dataTransfer.files));
-        fileInput.addEventListener("change", (e) =>
-          handleFiles(e.target.files)
-        );
-        fmtWebp.addEventListener("click", () => setFormat("webp"));
-        fmtPng.addEventListener("click", () => setFormat("png"));
-        quality.addEventListener("input", () => {
-          qualityLabel.textContent =
-            Math.round(parseFloat(quality.value) * 100) + "%";
-        });
-        convertBtn.addEventListener("click", async () => {
-          if (!currentFile) return;
-          setError("");
-          clearOutput();
-          const mime = format === "png" ? "image/png" : "image/webp";
-          const q = format === "webp" ? parseFloat(quality.value) : undefined;
-          try {
-            const blob = await new Promise((res, rej) =>
-              canvas.toBlob(
-                (b) => (b ? res(b) : rej(new Error("Canvas export failed."))),
-                mime,
-                q
-              )
-            );
-            outSize.textContent = bytes(blob.size);
-            outputURL = URL.createObjectURL(blob);
-            const name =
-              (outName.value || "image") +
-              (format === "png" ? ".png" : ".webp");
-            downloadLink.href = outputURL;
-            downloadLink.download = name;
-            downloadLink.textContent = "Download " + name;
-            downloadLink.style.display = "inline-block";
-          } catch (e) {
-            console.error(e);
-            setError("Conversion failed. Try a different image.");
-          }
-        });
-        setFormat("webp");
-        convertBtn.disabled = true;
-        window.addEventListener("beforeunload", () => {
-          revoke(currentImgURL);
-          revoke(outputURL);
-        });
+        (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-    </body>
-  </html>
+
+      <div class="panel drop" id="drop">
+        <div class="row" style="justify-content: center; gap: 12px">
+          <label class="btn" style="background: #121720">
+            Choose file
+            <input
+              id="fileInput"
+              type="file"
+              accept="image/*"
+              style="display: none"
+            />
+          </label>
+          <div class="muted">…or drop an image here</div>
+        </div>
+        <div id="fileInfo" class="muted" style="margin-top: 10px"></div>
+        <div id="error" class="err" role="alert" style="display: none"></div>
+      </div>
+
+      <div style="height: 8px"></div>
+
+      <div class="grid">
+        <div class="panel">
+          <h2>Preview</h2>
+          <div class="canvasWrap"><canvas id="canvas"></canvas></div>
+          <div class="kv">
+            <span>Dimensions</span><span id="dims">—</span>
+            <span>Original size</span><span id="origSize">—</span>
+            <span>Output size</span><span id="outSize">—</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Output</h2>
+          <div class="row" style="gap: 8px; margin-bottom: 10px">
+            <div class="toggle" role="tablist" aria-label="Output format">
+              <button
+                id="fmtWebp"
+                type="button"
+                class="active"
+                role="tab"
+                aria-selected="true"
+              >
+                WEBP
+              </button>
+              <button
+                id="fmtPng"
+                type="button"
+                role="tab"
+                aria-selected="false"
+              >
+                PNG
+              </button>
+            </div>
+
+            <button id="convertBtn" class="btn primary" disabled>
+              Convert
+            </button>
+            <a id="downloadLink" class="btn" download style="display: none"
+              >Download</a
+            >
+          </div>
+
+          <label class="muted" for="outName">Output name</label>
+          <input id="outName" class="input" placeholder="image-name" />
+
+          <div id="qualityWrap" style="margin-top: 12px">
+            <div class="row" style="justify-content: space-between">
+              <label for="quality">Quality (WEBP)</label>
+              <span id="qualityLabel" class="muted">92%</span>
+            </div>
+            <input
+              id="quality"
+              class="input"
+              type="range"
+              min="0.1"
+              max="1"
+              step="0.01"
+              value="0.92"
+            />
+            <div class="note">(Higher quality = larger file)</div>
+          </div>
+
+          <div class="note">
+            All processing happens in your browser. Nothing is uploaded.
+          </div>
+        </div>
+      </div>
+
+      <!-- Ad unit: bottom -->
+      <ins
+        class="adsbygoogle ads"
+        style="display: block; margin-top: 16px"
+        data-ad-client="ca-pub-5351497863299627"
+        data-ad-slot="2222222222"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+
+      <footer class="sub" style="margin-top: 18px">
+        © <span id="y"></span> webpng · <a href="privacy.html">Privacy</a> ·
+        <a href="terms.html">Terms</a>
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+      const fileInput = document.getElementById("fileInput");
+      const drop = document.getElementById("drop");
+      const fileInfo = document.getElementById("fileInfo");
+      const errEl = document.getElementById("error");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const fmtWebp = document.getElementById("fmtWebp");
+      const fmtPng = document.getElementById("fmtPng");
+      const convertBtn = document.getElementById("convertBtn");
+      const downloadLink = document.getElementById("downloadLink");
+      const outName = document.getElementById("outName");
+      const qualityWrap = document.getElementById("qualityWrap");
+      const quality = document.getElementById("quality");
+      const qualityLabel = document.getElementById("qualityLabel");
+      const dims = document.getElementById("dims");
+      const origSize = document.getElementById("origSize");
+      const outSize = document.getElementById("outSize");
+      let currentFile = null,
+        currentImgURL = "",
+        outputURL = "",
+        format = "webp";
+      const revoke = (url) => {
+        if (url) URL.revokeObjectURL(url);
+      };
+      const bytes = (n) => {
+        if (!Number.isFinite(n)) return "—";
+        const k = 1024;
+        if (n < k) return n + " B";
+        const u = ["KB", "MB", "GB"];
+        let i = -1;
+        do {
+          n /= k;
+          ++i;
+        } while (n >= k && i < u.length - 1);
+        return n.toFixed(1) + " " + u[i];
+      };
+      const setError = (msg) => {
+        errEl.style.display = msg ? "block" : "none";
+        errEl.textContent = msg || "";
+      };
+      function setFormat(next) {
+        format = next;
+        fmtWebp.classList.toggle("active", next === "webp");
+        fmtPng.classList.toggle("active", next === "png");
+        fmtWebp.setAttribute("aria-selected", next === "webp");
+        fmtPng.setAttribute("aria-selected", next === "png");
+        qualityWrap.style.display = next === "webp" ? "block" : "none";
+      }
+      function clearOutput() {
+        if (outputURL) {
+          revoke(outputURL);
+          outputURL = "";
+        }
+        downloadLink.style.display = "none";
+        downloadLink.removeAttribute("href");
+        outSize.textContent = "—";
+      }
+      function loadFile(f) {
+        setError("");
+        clearOutput();
+        currentFile = f;
+        fileInfo.textContent = f ? `Loaded: ${f.name}` : "";
+        origSize.textContent = f ? bytes(f.size) : "—";
+        if (!f) return;
+        outName.value = (f.name || "image").replace(/\.[^/.]+$/, "");
+        if (currentImgURL) {
+          revoke(currentImgURL);
+          currentImgURL = "";
+        }
+        const url = URL.createObjectURL(f);
+        currentImgURL = url;
+        const img = new Image();
+        img.onload = () => {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+          dims.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+          convertBtn.disabled = false;
+        };
+        img.onerror = () => setError("Failed to load that image.");
+        img.src = url;
+      }
+      function handleFiles(list) {
+        const f = list && list[0];
+        if (!f) return;
+        const ext = (f.name.split(".").pop() || "").toLowerCase();
+        if (!["png", "jpg", "jpeg", "webp", "gif"].includes(ext)) {
+          setError("Unsupported type. Try PNG/JPG/WEBP/GIF.");
+          return;
+        }
+        loadFile(f);
+      }
+      ["dragenter", "dragover"].forEach((t) =>
+        drop.addEventListener(t, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          drop.classList.add("is-drag");
+        })
+      );
+      ["dragleave", "drop"].forEach((t) =>
+        drop.addEventListener(t, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          drop.classList.remove("is-drag");
+        })
+      );
+      drop.addEventListener("drop", (e) => handleFiles(e.dataTransfer.files));
+      fileInput.addEventListener("change", (e) => handleFiles(e.target.files));
+      fmtWebp.addEventListener("click", () => setFormat("webp"));
+      fmtPng.addEventListener("click", () => setFormat("png"));
+      quality.addEventListener("input", () => {
+        qualityLabel.textContent =
+          Math.round(parseFloat(quality.value) * 100) + "%";
+      });
+      convertBtn.addEventListener("click", async () => {
+        if (!currentFile) return;
+        setError("");
+        clearOutput();
+        const mime = format === "png" ? "image/png" : "image/webp";
+        const q = format === "webp" ? parseFloat(quality.value) : undefined;
+        try {
+          const blob = await new Promise((res, rej) =>
+            canvas.toBlob(
+              (b) => (b ? res(b) : rej(new Error("Canvas export failed."))),
+              mime,
+              q
+            )
+          );
+          outSize.textContent = bytes(blob.size);
+          outputURL = URL.createObjectURL(blob);
+          const name =
+            (outName.value || "image") + (format === "png" ? ".png" : ".webp");
+          downloadLink.href = outputURL;
+          downloadLink.download = name;
+          downloadLink.textContent = "Download " + name;
+          downloadLink.style.display = "inline-block";
+        } catch (e) {
+          console.error(e);
+          setError("Conversion failed. Try a different image.");
+        }
+      });
+      setFormat("webp");
+      convertBtn.disabled = true;
+      window.addEventListener("beforeunload", () => {
+        revoke(currentImgURL);
+        revoke(outputURL);
+      });
+    </script>
+  </body>
 </html>
