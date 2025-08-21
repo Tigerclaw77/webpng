@@ -1,0 +1,248 @@
+/* =========================
+   WebPNG shared stylesheet
+   Blue theme, high contrast
+   ========================= */
+
+/* Palette */
+:root{
+  --blue:#2563eb;          /* page bg */
+  --blue-dark:#1e40af;     /* buttons/links */
+  --blue-darker:#1e3a8a;   /* hover/active */
+
+  --text:#0f172a;          /* near-black on white */
+  --muted:#475569;         /* slate-600 body-muted */
+  --border:#d1d5db;        /* card borders */
+  --white:#ffffff;         /* cards */
+}
+
+/* Base reset & typography */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background:var(--blue);           /* solid blue */
+}
+
+/* Headings & text spacing */
+h1,h2,h3{color:var(--text); margin:0 0 .5rem}
+p,ul,ol{margin:.5rem 0 1rem}
+ul,ol{padding-left:1.25rem}
+
+/* Links */
+a{color:var(--blue-dark); text-decoration:underline}
+a:hover{color:var(--blue);}
+
+/* Layout containers */
+.wrap{max-width:1100px; margin:32px auto; padding:0 16px}
+header,footer{max-width:1100px; margin:0 auto; padding:10px 16px}
+
+/* Top nav */
+nav{display:flex; gap:14px; align-items:center; justify-content:center; flex-wrap:wrap}
+.brand{font-weight:800; letter-spacing:.2px; color:#fff}
+.pill {
+  padding: 8px 18px;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 999px;
+  background: linear-gradient(145deg, var(--blue-dark), #1e40af);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.pill:hover {
+  background: linear-gradient(145deg, #2563eb, var(--blue-dark));
+  border-color: rgba(255,255,255,0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+.pill:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+
+/* Subtitle under H1 (sits on blue) */
+.sub{color:#e6efff; text-align:center; margin:6px 0 18px}
+
+/* Cards / panels (content areas) */
+.card, .panel{
+  background:var(--white);
+  color:var(--text);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+/* Two-column grid for preview / output */
+.grid{display:grid; grid-template-columns:1fr; gap:16px}
+@media (min-width:900px){ .grid{ grid-template-columns:1fr 1fr } }
+
+/* Rows */
+.row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+
+/* Buttons */
+.btn{
+  appearance:none; border:none;
+  background:var(--blue-dark); color:#fff;
+  padding:10px 16px; border-radius:10px; font-weight:700; cursor:pointer;
+}
+.btn:hover{background:var(--blue-darker)}
+/* If old inline styles remain, this keeps the blue */
+.btn{ background:var(--blue-dark) !important; color:#fff !important; }
+
+/* Button variants */
+.btn.primary{background:var(--blue-dark)}
+.btn.secondary{
+  background:#eef2ff; color:var(--blue-dark);
+  border:1px solid #c7d2fe;
+}
+.btn.secondary:hover{background:#e0e7ff}
+
+/* Inputs & dropzone */
+.input{
+  width:100%; background:#fff; color:var(--text);
+  border:1px solid #cbd5e1; padding:8px 10px; border-radius:10px;
+}
+input[type="file"]{
+  border:1px dashed #cbd5e1; padding:16px; border-radius:12px; width:100%; color:#334155; background:#fff
+}
+.drop{
+  border:1.5px dashed #cbd5e1; border-radius:16px; padding:18px; text-align:center; background:#fff; color:#1f2937
+}
+.drop.is-drag{ outline:2px solid var(--blue); outline-offset:2px }
+
+/* Preview canvas area */
+.canvasWrap{
+  background:#fff; border:1px solid var(--border);
+  border-radius:12px; overflow:auto; min-height:240px;
+  display:grid; place-items:center;
+}
+canvas{display:block; max-width:100%; height:auto}
+
+/* Toggle (WEBP/PNG) */
+.toggle{
+  display:inline-flex; background:#f3f4f6; border:1px solid #cbd5e1; border-radius:12px; overflow:hidden
+}
+.toggle button{
+  border:none; background:transparent; color:var(--text); padding:8px 12px; cursor:pointer
+}
+.toggle button.active{ background:#e0e7ff; color:#111 }
+
+/* Key/Value info, helpers, errors */
+.kv{display:grid; grid-template-columns:1fr auto; gap:8px; margin:10px 0; font-size:13px}
+.muted, small.helper{color:var(--muted)}
+.note{font-size:12px; color:var(--muted); margin-top:8px}
+.err{margin-top:8px; color:#ef4444; font-weight:600}
+
+/* “More image tools” grid */
+.container{max-width:980px; margin:auto; padding:32px 16px}
+.card a{color:var(--blue-dark)}
+.card a:hover{color:var(--blue)}
+.ads{margin:16px auto; display:block; text-align:center}
+
+/* Collapsibles */
+details{border-top:1px solid #e5e7eb; padding:10px 0}
+summary{cursor:pointer; font-weight:700; color:var(--text); list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--blue-dark)}
+details p, details li{color:var(--text)}
+
+/* Footer on blue */
+footer{ text-align:center; color:#e6efff }
+footer a{ color:#e6efff }
+footer a:hover{ opacity:.9 }
+
+/* ---- Visual hierarchy helpers ---- */
+
+/* Top stepper */
+.stepper{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:8px 0 18px}
+.step{display:flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #c7d2fe;color:#1e3a8a;
+      padding:6px 10px;border-radius:999px;font-weight:600}
+.step .num{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+           background:#1e3a8a;color:#fff;font-size:12px}
+
+/* Card header bar */
+.card .card-header, .panel .card-header{
+  display:flex;align-items:center;gap:8px;
+  background:#eff6ff;border:1px solid #c7d2fe;border-radius:8px;padding:8px 10px;margin:-4px 0 12px 0;
+  color:#1e3a8a;font-weight:700
+}
+.card .card-header .icon{font-size:18px}
+
+/* Focused step accent */
+.card--focus{border-left:4px solid #2563eb;}
+
+/* Section tints to break the page */
+.section-tint{background:#f8fafc;border:1px solid #e5e7eb;border-radius:12px;padding:18px}
+
+/* Typographic rhythm */
+h2{font-size:1.25rem;margin:0 0 .75rem}
+h3{font-size:1.05rem;margin:.25rem 0 .5rem}
+
+/* Remove link underlines in tool cards */
+.tool-card a {
+  text-decoration: none;
+  color: inherit; /* keep same text color as card */
+  font-weight: 600;
+}
+.tool-card a:hover {
+  color: #2563eb; /* optional: add hover color for clarity */
+}
+
+/* === Static page layout (About/Privacy/Terms/Contact) === */
+.page { /* wrapper inside .wrap */
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-card {
+  background:#fff;
+  color:#0f172a;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  padding:28px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.page h1 { margin:0 0 8px; font-size:2rem; }
+.page .lead { color:#475569; margin:0 0 18px; }
+
+.prose > * + * { margin-top:1rem; }        /* vertical rhythm */
+.prose h2 { margin-top:1.25rem; font-size:1.25rem; }
+.prose ul, .prose ol { padding-left:1.25rem; }
+
+/* contact form */
+.form .input, .form textarea {
+  width:100%; background:#fff; color:#0f172a;
+  border:1px solid #cbd5e1; border-radius:10px;
+  padding:12px 14px;
+}
+.form textarea { min-height:180px; resize:vertical; }
+.form .btn { margin-top:10px; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+  width: 100%;
+}
+
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}

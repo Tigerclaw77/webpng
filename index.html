@@ -17,194 +17,7 @@
     ></script>
     <meta name="google-adsense-account" content="ca-pub-5351497863299627" />
 
-    <style>
-      :root {
-        --bg: #0f1115;
-        --panel: #12151b;
-        --muted: #7a8699;
-        --text: #e9eef5;
-        --accent: #ff4f9a;
-        --border: #1f2430;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Arial;
-        background: radial-gradient(
-            10px 800px at 20% -10%,
-            #1a2030 0,
-            transparent 60%
-          ),
-          var(--bg);
-        color: var(--text);
-      }
-      a {
-        color: #aad2ff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .wrap {
-        max-width: 1100px;
-        margin: 32px auto;
-        padding: 0 16px;
-      }
-      header,
-      footer {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 10px 16px;
-      }
-      nav {
-        display: flex;
-        gap: 14px;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .brand {
-        font-weight: 800;
-        letter-spacing: 0.2px;
-      }
-      .pill {
-        padding: 6px 10px;
-        border: 1px solid var(--border);
-        border-radius: 999px;
-        background: #161a24;
-      }
-      .sub {
-        color: var(--muted);
-        text-align: center;
-        margin: 6px 0 18px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      @media (min-width: 900px) {
-        .grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      .panel {
-        background: linear-gradient(180deg, #141925, #10131b);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-      }
-      .panel h2 {
-        margin: 0 0 12px;
-        font-size: 16px;
-        letter-spacing: 0.2px;
-      }
-      .drop {
-        border: 1.5px dashed #2a2f3c;
-        border-radius: 16px;
-        padding: 18px;
-        text-align: center;
-        background: #0e1219;
-      }
-      .drop.is-drag {
-        outline: 2px solid var(--accent);
-        outline-offset: 2px;
-      }
-      .muted {
-        color: var(--muted);
-        font-size: 13px;
-      }
-      .row {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .btn {
-        appearance: none;
-        border: 1px solid var(--border);
-        background: #171b24;
-        color: var(--text);
-        padding: 8px 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-      }
-      .btn:hover {
-        background: #1a2030;
-      }
-      .btn.primary {
-        background: var(--accent);
-        border-color: #ff2f8a;
-        color: #fff;
-      }
-      .toggle {
-        display: inline-flex;
-        background: #141926;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: hidden;
-      }
-      .toggle button {
-        border: none;
-        background: transparent;
-        color: var(--text);
-        padding: 8px 12px;
-        cursor: pointer;
-      }
-      .toggle button.active {
-        background: var(--accent);
-        color: #fff;
-      }
-      .input {
-        width: 100%;
-        background: #121722;
-        border: 1px solid var(--border);
-        color: var(--text);
-        padding: 8px 10px;
-        border-radius: 10px;
-      }
-      .kv {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 8px;
-        margin: 10px 0;
-        font-size: 13px;
-      }
-      .canvasWrap {
-        background: #0a0d14;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        overflow: auto;
-        min-height: 240px;
-        display: grid;
-        place-items: center;
-      }
-      canvas {
-        display: block;
-        max-width: 100%;
-        height: auto;
-      }
-      .note {
-        font-size: 12px;
-        color: var(--muted);
-        margin-top: 8px;
-      }
-      .err {
-        margin-top: 8px;
-        color: #e74c3c;
-        font-weight: 600;
-      }
-      .ads {
-        margin: 16px auto;
-        display: block;
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=1" />
   </head>
 
   <body>
@@ -225,6 +38,13 @@
         Free, private, in-browser conversion. Images never leave your device.
       </div>
 
+      <div class="stepper">
+        <div class="step"><span class="num">1</span>Upload</div>
+        <div class="step"><span class="num">2</span>Preview</div>
+        <div class="step"><span class="num">3</span>Convert</div>
+        <div class="step"><span class="num">4</span>Download</div>
+      </div>
+
       <!-- Ad unit: top -->
       <!-- <ins
         class="adsbygoogle ads"
@@ -238,7 +58,8 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
 
-      <div class="panel drop" id="drop">
+      <div class="panel drop card--focus" id="drop">
+        <div class="card-header"><span class="icon">📤</span> Upload</div>
         <div class="row" style="justify-content: center; gap: 12px">
           <label class="btn" style="background: #121720">
             Choose file
@@ -259,6 +80,7 @@
 
       <div class="grid">
         <div class="panel">
+          <div class="card-header"><span class="icon">⚙️</span> Output</div>
           <h2>Preview</h2>
           <div class="canvasWrap"><canvas id="canvas"></canvas></div>
           <div class="kv">
@@ -297,6 +119,10 @@
             <a id="downloadLink" class="btn" download style="display: none"
               >Download</a
             >
+            <p class="note">
+              When ready, click <strong>Download</strong> to save the converted
+              file.
+            </p>
           </div>
 
           <label class="muted" for="outName">Output name</label>
@@ -337,7 +163,33 @@
       <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
-      <div class="panel" style="margin-top: 16px">
+      <section class="section-tint" style="margin-top: 16px">
+        <h2>More image tools</h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+          "
+        >
+          <div class="card tool-card">
+            <a href="/jpg-to-webp.html"
+              ><h3>JPG → WebP</h3>
+              <p>
+                Convert JPEG photos to fast, modern WebP with quality control.
+              </p></a
+            >
+          </div>
+          <div class="card tool-card">
+            <a href="/png-compress.html"
+              ><h3>PNG Compressor</h3>
+              <p>Lossless recompress & strip metadata for smaller PNGs.</p></a
+            >
+          </div>
+          <!-- <a class="card" href="/webp-to-gif.html"><h3>WebP → GIF</h3><p>Create GIFs from WebP animations for legacy apps.</p></a> -->
+        </div>
+      </section>
+      <!-- <div class="panel" style="margin-top: 16px">
         <p>
           WebPNG is a free, in-browser PNG ↔ WebP converter. Files never leave
           your device—everything runs locally in your browser for speed and
@@ -351,7 +203,72 @@
             >contact@passportinformatics.com</a
           >.
         </p>
-      </div>
+      </div> -->
+      <section
+        class="card"
+        aria-label="About WebP & site info"
+        style="margin-top: 18px"
+      >
+        <h2 style="margin: 0 0 8px">About this converter</h2>
+        <details open>
+          <summary><strong>What is WebP?</strong></summary>
+          <p>
+            WebP is a modern image format from Google that delivers high‑quality
+            pictures at smaller file sizes than PNG or JPEG. It supports both
+            lossy and lossless compression, plus transparency (alpha) and
+            animation. Smaller images mean faster pages, better Core Web Vitals,
+            and improved SEO.
+          </p>
+        </details>
+        <details>
+          <summary><strong>Why switch from PNG/JPEG?</strong></summary>
+          <ul>
+            <li>
+              <b>30–70% smaller</b> files at visually identical quality in
+              typical web scenarios.
+            </li>
+            <li>
+              <b>Alpha transparency</b> like PNG, but with compression closer to
+              JPEG.
+            </li>
+            <li>
+              <b>Animation</b> support as a GIF alternative with far smaller
+              sizes.
+            </li>
+          </ul>
+        </details>
+        <details>
+          <summary><strong>Privacy: how we handle your files</strong></summary>
+          <p>
+            Your images are processed <b>in‑browser</b> using the Canvas API—no
+            server upload. Nothing is stored on our servers. Close the tab and
+            your files are gone.
+          </p>
+        </details>
+        <details>
+          <summary><strong>Tips for best results</strong></summary>
+          <ul>
+            <li>
+              Start around <b>75–85</b> quality for photos;
+              <b>90–100 lossless</b> for UI assets/logos.
+            </li>
+            <li>
+              Resize large images to the display size before converting for
+              maximal savings.
+            </li>
+            <li>Use animated WebP to replace heavy GIFs.</li>
+          </ul>
+        </details>
+        <details>
+          <summary><strong>FAQ</strong></summary>
+          <p>
+            <b>Will WebP work everywhere?</b> Yes—modern browsers support it. We
+            fall back to PNG/JPEG for legacy contexts.
+          </p>
+          <p><b>Is the converter free?</b> Yes—no watermarks, no quotas.</p>
+        </details>
+      </section>
+
       <div class="panel" style="margin-top: 16px; line-height: 1.6">
         <h2 style="margin-top: 0">What is WebP and when should you use it?</h2>
         <p>
@@ -536,8 +453,10 @@
         if (!currentFile) return;
         setError("");
         clearOutput();
+
         const mime = format === "png" ? "image/png" : "image/webp";
         const q = format === "webp" ? parseFloat(quality.value) : undefined;
+
         try {
           const blob = await new Promise((res, rej) =>
             canvas.toBlob(
@@ -546,6 +465,7 @@
               q
             )
           );
+
           outSize.textContent = bytes(blob.size);
           outputURL = URL.createObjectURL(blob);
           const name =
@@ -554,11 +474,22 @@
           downloadLink.download = name;
           downloadLink.textContent = "Download " + name;
           downloadLink.style.display = "inline-block";
+
+          // ✅ Reset input after preparing download
+          const fi = document.getElementById("fileInput");
+          if (fi) fi.value = "";
+          currentFile = null;
+          convertBtn.disabled = true;
+
+          // Optional full UI reset:
+          // dims.textContent = origSize.textContent = outSize.textContent = '—';
+          // canvas.width = canvas.height = 0;
         } catch (e) {
           console.error(e);
           setError("Conversion failed. Try a different image.");
         }
       });
+
       setFormat("webp");
       convertBtn.disabled = true;
       window.addEventListener("beforeunload", () => {

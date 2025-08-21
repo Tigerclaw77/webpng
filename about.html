@@ -4,64 +4,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>About · webpng</title>
-    <meta
-      name="description"
-      content="About webpng — a free, private PNG ↔ WebP converter that runs entirely in your browser. No uploads, no sign-up. Fast on desktop and mobile."
-    />
-
-    <!-- AdSense -->
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5351497863299627"
       crossorigin="anonymous"
     ></script>
     <meta name="google-adsense-account" content="ca-pub-5351497863299627" />
-
-    <style>
-      body {
-        margin: 0;
-        background: #0f1115;
-        color: #e9eef5;
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      }
-      .wrap {
-        max-width: 900px;
-        margin: 32px auto;
-        padding: 0 16px;
-      }
-      a { color: #aad2ff; }
-      nav {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        margin: 12px 0;
-      }
-      .pill {
-        padding: 6px 10px;
-        border: 1px solid #1f2430;
-        border-radius: 999px;
-        background: #161a24;
-        text-decoration: none;
-      }
-      h1 { margin: 10px 0 8px; }
-      .sub { color: #7a8699; }
-      .panel { margin-top: 14px; line-height: 1.55; }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=5">
   </head>
   <body>
+    <header>
     <nav>
-      <a class="pill" href="index.html">Home</a>
-      <a class="pill" href="about.html">About</a>
-      <a class="pill" href="privacy.html">Privacy</a>
-      <a class="pill" href="terms.html">Terms</a>
-      <a class="pill" href="contact.html">Contact</a>
+      <span class="brand">webpng</span>
+      <a class="pill" href="/index.html">Home</a>
+      <a class="pill" href="/about.html">About</a>
+      <a class="pill" href="/privacy.html">Privacy</a>
+      <a class="pill" href="/terms.html">Terms</a>
+      <a class="pill" href="/contact.html">Contact</a>
     </nav>
-
+  </header>
     <div class="wrap">
+  <div class="page">
+    <div class="page-card">
       <h1>About webpng</h1>
-      <p class="sub">A free, private PNG ↔ WebP converter that runs entirely in your browser.</p>
-
-      <div class="panel">
+      <p class="lead">A free, private PNG ↔ WebP converter that runs entirely in your browser.</p>
+      <div class="prose">
         <p>
           webpng uses modern browser technology (HTML5 Canvas and related APIs) to convert images
           on your device. Files are not uploaded to any server. This makes it fast and
@@ -80,6 +47,15 @@
           <a href="mailto:contact@passportinformatics.com">contact@passportinformatics.com</a>.
         </p>
       </div>
-    </div>
+      </div>
+    <footer class="sub" style="margin-top: 18px">
+        © <span id="y"></span> webpng · <a href="/privacy.html">Privacy</a> ·
+        <a href="/terms.html">Terms</a>
+      </footer>
+    
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

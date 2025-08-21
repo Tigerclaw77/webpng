@@ -10,96 +10,56 @@
       crossorigin="anonymous"
     ></script>
     <meta name="google-adsense-account" content="ca-pub-5351497863299627" />
-    <style>
-      body {
-        margin: 0;
-        background: #0f1115;
-        color: #e9eef5;
-        font-family: ui-sans-serif, system-ui;
-      }
-      .wrap {
-        max-width: 900px;
-        margin: 32px auto;
-        padding: 0 16px;
-      }
-      a {
-        color: #aad2ff;
-      }
-      nav {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        margin: 12px 0;
-      }
-      .pill {
-        padding: 6px 10px;
-        border: 1px solid #1f2430;
-        border-radius: 999px;
-        background: #161a24;
-        text-decoration: none;
-      }
-      h1 {
-        margin: 10px 0 8px;
-      }
-      .sub {
-        color: #7a8699;
-      }
-      form {
-        display: grid;
-        gap: 10px;
-        max-width: 520px;
-      }
-      input,
-      textarea {
-        background: #121722;
-        border: 1px solid #1f2430;
-        color: #e9eef5;
-        padding: 8px 10px;
-        border-radius: 10px;
-      }
-      button {
-        appearance: none;
-        border: 1px solid #1f2430;
-        background: #171b24;
-        color: #e9eef5;
-        padding: 8px 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        font-weight: 600;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css?v=6">
   </head>
   <body>
-    <nav>
-      <a class="pill" href="index.html">Home</a>
-      <a class="pill" href="about.html">About</a>
-      <a class="pill" href="privacy.html">Privacy</a>
-      <a class="pill" href="terms.html">Terms</a>
-      <a class="pill" href="contact.html">Contact</a>
-    </nav>
+    <header>
+      <nav>
+        <span class="brand">webpng</span>
+        <a class="pill" href="/index.html">Home</a>
+        <a class="pill" href="/about.html">About</a>
+        <a class="pill" href="/privacy.html">Privacy</a>
+        <a class="pill" href="/terms.html">Terms</a>
+        <a class="pill" href="/contact.html">Contact</a>
+      </nav>
+    </header>
+
     <div class="wrap">
-      <h1>Contact</h1>
-      <p class="sub">
-        Email us anytime at
-        <a href="mailto:contact@passportinformatics.com"
-          >contact@passportinformatics.com</a
-        >.
-      </p>
-      <form
-        action="mailto:contact@passportinformatics.com"
-        method="post"
-        enctype="text/plain"
-      >
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Your email" required />
-        <textarea
-          name="message"
-          rows="5"
-          placeholder="How can we help?"
-          required
-        ></textarea>
-        <button type="submit">Send</button>
-      </form>
+      <div class="page-card">
+        <h1>Contact</h1>
+        <p>
+          Email us anytime at
+          <a href="mailto:contact@passportinformatics.com"
+            >contact@passportinformatics.com</a
+          >.
+        </p>
+
+        <form
+          action="mailto:contact@passportinformatics.com"
+          method="post"
+          enctype="text/plain"
+          class="contact-form"
+        >
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea
+            name="message"
+            rows="5"
+            placeholder="How can we help?"
+            required
+          ></textarea>
+          <button type="submit" class="btn">Send</button>
+        </form>
+      </div>
     </div>
+
+    <footer class="sub">
+      © <span id="y"></span> webpng · <a href="privacy.html">Privacy</a> ·
+      <a href="terms.html">Terms</a>
+    </footer>
+
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
